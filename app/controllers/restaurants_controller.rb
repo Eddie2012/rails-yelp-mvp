@@ -18,7 +18,7 @@ class RestaurantsController < ApplicationController
     if @restaurant.save
         redirect_to restaurant_path(@restaurant)
     else
-      render :index
+      render :new
     end
   end
 
@@ -26,6 +26,11 @@ class RestaurantsController < ApplicationController
   end
 
   def update
+    if @restaurant.update(restaurant_params)
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -40,6 +45,6 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurant_params
-    params.require(:restaurant).permit(:title, :content)
+    params.require(:restaurant).permit(:name, :address, :phone_number, :category)
   end
 end

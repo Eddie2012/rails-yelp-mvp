@@ -1,2 +1,16 @@
-<h1>Restaurants#new</h1>
-<p>Find me in app/views/restaurants/new.html.erb</p>
+<h1>create new restaurant</h1>
+<%= render 'form' %>
+
+<h1>list of restaurants</h1>
+
+<% @restaurants.each do |restaurant| %>
+  <h2><%= restaurant.name %></h2>
+  <p><%= restaurant.address %></p>
+  <p><%= restaurant.phone_number %></p>
+  <p><%= restaurant.category %></p>
+  <%= link_to restaurant.name, restaurant_path(restaurant) %>
+  <%= link_to "Edit", edit_restaurant_path(restaurant) %>
+  <%= link_to "Delete", restaurant_path(restaurant),
+  method: :delete,
+  data: { confirm: "Are you sure?" } %>
+<% end %>
